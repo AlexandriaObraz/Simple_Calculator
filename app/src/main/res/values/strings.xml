@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="btn_sum">+</string>
+    <string name="btn_difference">-</string>
+    <string name="btn_multiply">*</string>
+    <string name="btn_division">/</string>
+    <string name="btn_equals">=</string>
+</resources>
