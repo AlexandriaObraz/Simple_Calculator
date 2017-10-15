@@ -1,0 +1,38 @@
+[
+ {
+ " id":0,
+  "namePets": Balto,
+  "breed": doberman,
+  "nameOwners": Alesia,
+  "age": 2
+ },
+ {
+  "id":1,
+  "namePets":Lady,
+  "breed": akita,
+  "nameOwners": Antonina,
+  "age": 1
+ },
+ {
+  "id":2,
+  "namePets": Puma,
+  "bree": barbet,
+  "nameOwners": Alexander,
+  "age": 2
+ },
+ {
+  "id":3,
+  "namePets":Alladin,
+  "bree": boxer,
+  "nameOwners": Anna,
+  "age": 2
+  }
+  {
+  "id":4,
+  "namePets":Scout,
+  "bree": collie,
+  "nameOwners": Daniil,
+  "age": 3
+  }
+
+]

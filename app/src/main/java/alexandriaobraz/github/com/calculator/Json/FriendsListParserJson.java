@@ -1,0 +1,65 @@
+package alexandriaobraz.github.com.calculator.Json;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import alexandriaobraz.github.com.calculator.Gson.FriendsListGson;
+import alexandriaobraz.github.com.calculator.Parser.IFriendsList;
+import alexandriaobraz.github.com.calculator.Parser.IFriendsListParser;
+import alexandriaobraz.github.com.calculator.Stream.IOUtils;
+
+
+public class FriendsListParserJson implements IFriendsListParser{
+
+    private final InputStream mInputStream;
+    private final JSONArray mJsonArray;
+
+    public FriendsListParserJson(final InputStream pInputStream) {
+        mInputStream = pInputStream;
+        mJsonArray = null;
+    }
+
+    public FriendsListParserJson(final JSONArray pJsonArray) {
+        mJsonArray = pJsonArray;
+        mInputStream = null;
+    }
+
+    @Override
+    public IFriendsList parse() throws Exception {
+        if (mInputStream != null) {
+            return parseFromInputSteam();
+        } else if (mJsonArray != null) {
+            return parseFromJsonArray();
+        } else {
+            throw new Exception();
+        }
+    }
+
+    private IFriendsList parseFromInputSteam() throws Exception {
+        final JSONArray jsonArray = new JSONArray(IOUtils.toString(mInputStream));
+        final List<FriendJson> friendsJsonList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            final JSONObject jsonObject = jsonArray.getJSONObject(i);
+            friendsJsonList.add(new FriendJson(jsonObject));
+        }
+        return new FriendsListJson(friendsJsonList);
+    }
+
+    private IFriendsList parseFromJsonArray() throws Exception {
+        final List<FriendJson> friendsJsonList = new ArrayList<>();
+        if( mJsonArray != null) {
+            for (int i = 0; i < mJsonArray.length(); i++) {
+                final JSONObject jsonObject = mJsonArray.getJSONObject(i);
+                friendsJsonList.add(new FriendJson(jsonObject));
+            }
+        }
+        else {
+            throw new Exception();
+        }
+        return new FriendsListJson(friendsJsonList);
+    }
+}
